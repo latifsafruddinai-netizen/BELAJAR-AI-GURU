@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelatihan Praktek AI & Konten Video bagi Guru - SMK Muhammadiyah 01 Keling</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for Celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0284c7',
+                            darkBlue: '#0369a1',
+                            yellow: '#facc15',
+                            gold: '#eab308',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Print Styling for Certificate */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .certificate-border {
+            background-image: radial-gradient(circle at top left, rgba(2, 132, 199, 0.1), transparent 40%),
+                              radial-gradient(circle at bottom right, rgba(250, 204, 21, 0.15), transparent 40%);
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificate-printable, #certificate-printable * {
+                visibility: visible;
+            }
+            #certificate-printable {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 20px;
+                box-shadow: none !important;
+                border: 8px solid #0284c7 !important;
+                background: white !important;
+                color: #0f172a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Toast Notification Container (Replaces alert()) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <!-- Brand / Logo Pojok Kiri Atas -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center p-1 shadow-md shrink-0">
+                        <svg viewBox="0 0 120 120" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo W3 PT WEB DIGITAL MARKETING">
+                            <defs>
+                                <linearGradient id="w3BlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#38bdf8"/>
+                                    <stop offset="55%" stop-color="#0284c7"/>
+                                    <stop offset="100%" stop-color="#1d4ed8"/>
+                                </linearGradient>
+                                <linearGradient id="w3SilverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#e2e8f0"/>
+                                    <stop offset="50%" stop-color="#94a3b8"/>
+                                    <stop offset="100%" stop-color="#475569"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Pixel / Digital Fragments Above W -->
+                            <rect x="44" y="14" width="6" height="6" rx="1.2" fill="#0284c7"/>
+                            <rect x="55" y="10" width="7" height="7" rx="1.5" fill="#0ea5e9"/>
+                            <rect x="66" y="15" width="6" height="6" rx="1.2" fill="#2563eb"/>
+                            <rect x="42" y="25" width="7" height="7" rx="1.5" fill="#0369a1"/>
+                            <rect x="53" y="24" width="6" height="6" rx="1.2" fill="#38bdf8"/>
+                            <rect x="63" y="27" width="7" height="7" rx="1.5" fill="#0284c7"/>
+                            <rect x="37" y="36" width="8" height="8" rx="1.5" fill="#1d4ed8"/>
+                            <rect x="49" y="35" width="6" height="6" rx="1.2" fill="#0ea5e9"/>
+                            <!-- Stylized W -->
+                            <path d="M16 32 L27 32 L38 64 L51 38 L61 38 L71 63 L81 33 L91 33 L74 82 L65 82 L55 56 L42 82 L33 82 Z" fill="url(#w3BlueGrad)"/>
+                            <!-- Stylized 3 -->
+                            <path d="M74 44 C82 41 92 43 93 51 C94 56 89 59 85 60 C91 61 95 65 94 72 C92 80 81 83 72 80 L75 73 C80 75 86 74 87 70 C88 66 83 64 78 64 L79 58 C84 58 87 56 87 52 C86 49 81 49 76 50 Z" fill="url(#w3BlueGrad)"/>
+                            <!-- Metallic C/D Arc on Right -->
+                            <path d="M62 32 L93 32 C106 32 112 44 111 58 C110 72 99 81 84 82 L88 76 C98 75 104 68 105 58 C105 47 100 38 90 38 L65 38 Z" fill="url(#w3SilverGrad)"/>
+                            <!-- PT WEB Text -->
+                            <text x="16" y="99" font-family="Plus Jakarta Sans, Inter, sans-serif" font-weight="900" font-size="16" letter-spacing="0.5" fill="url(#w3SilverGrad)">PT</text>
+                            <text x="43" y="99" font-family="Plus Jakarta Sans, Inter, sans-serif" font-weight="900" font-size="16" letter-spacing="0.5" fill="url(#w3BlueGrad)">WEB</text>
+                            <!-- DIGITAL MARKETING Subtext -->
+                            <line x1="16" y1="108" x2="34" y2="108" stroke="#64748b" stroke-width="1.2"/>
+                            <text x="60" y="111" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="6.2" letter-spacing="1.4" fill="#64748b">DIGITAL MARKETING</text>
+                            <line x1="86" y1="108" x2="104" y2="108" stroke="#64748b" stroke-width="1.2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-sky-700 dark:text-sky-400">AI & KONTEN VIDEO</span>
+                            <span class="hidden md:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-yellow-400 text-slate-900 rounded-full">Workshop Guru</span>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">SMK Muhammadiyah 01 Keling Jepara &bull; PT Web Digital Marketing</p>
+                    </div>
+                </div>
+
+                <!-- Right Controls: User Status & Theme Toggle -->
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <div id="user-badge" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-amber-500" id="status-dot"></span>
+                        <span id="header-user-name" class="truncate max-w-[140px]">Belum Terdaftar</span>
+                    </div>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Ganti Tema" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-yellow-400 transition-all border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-2 text-xs font-semibold">
+                        <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
+                        <span id="theme-text" class="hidden md:inline">Mode Gelap</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stepper Navigation Bar -->
+        <nav class="bg-slate-100/80 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 overflow-x-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between sm:justify-center gap-1 sm:gap-3 py-2.5 min-w-max">
+                    <!-- Step 1: Pendaftaran -->
+                    <button onclick="navigateTo('pendaftaran')" id="nav-pendaftaran" class="nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-sky-600 text-white shadow-md">
+                        <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold">1</span>
+                        <span>Pendaftaran</span>
+                        <i id="check-pendaftaran" class="fa-solid fa-circle-check text-yellow-300 hidden"></i>
+                    </button>
+
+                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+
+                    <!-- Step 2: Materi -->
+                    <button onclick="navigateTo('materi')" id="nav-materi" class="nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold">2</span>
+                        <span>Materi & Panduan AI</span>
+                        <i id="check-materi" class="fa-solid fa-circle-check text-emerald-500 hidden"></i>
+                    </button>
+
+                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+
+                    <!-- Step 3: Tugas -->
+                    <button onclick="navigateTo('tugas')" id="nav-tugas" class="nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold">3</span>
+                        <span>Tugas Praktik</span>
+                        <i id="check-tugas" class="fa-solid fa-circle-check text-emerald-500 hidden"></i>
+                    </button>
+
+                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+
+                    <!-- Step 4: Evaluasi -->
+                    <button onclick="navigateTo('evaluasi')" id="nav-evaluasi" class="nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold">4</span>
+                        <span>Evaluasi</span>
+                        <i id="check-evaluasi" class="fa-solid fa-circle-check text-emerald-500 hidden"></i>
+                    </button>
+
+                    <i class="fa-solid fa-equals text-sky-500 text-xs mx-1"></i>
+
+                    <!-- Step 5: Sertifikat -->
+                    <button onclick="navigateTo('sertifikat')" id="nav-sertifikat" class="nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-award text-amber-500"></i>
+                        <span>Sertifikat</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+        <!-- ========================================== -->
+        <!-- SECTION 1: PENDAFTARAN                     -->
+        <!-- ========================================== -->
+        <section id="sec-pendaftaran" class="tab-section space-y-8">
+            <!-- Hero Banner sesuai Poster -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-700 via-blue-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-sky-500/30">
+                <div class="absolute -right-20 -top-20 w-72 h-72 bg-sky-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-20 -bottom-20 w-72 h-72 bg-yellow-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs uppercase tracking-wider shadow">
+                            <i class="fa-solid fa-sparkles"></i> Pelatihan Praktek Guru
+                        </div>
+                        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                            Pelatihan Praktek <span class="text-yellow-400">AI dan Konten Video</span> bagi Guru
+                        </h1>
+                        <p class="text-sky-100 text-sm sm:text-base italic font-medium">
+                            “Menuju Guru Melek Teknologi, Pembelajaran Lebih Kreatif dan Inovatif”
+                        </p>
+                        
+                        <!-- Info Jadwal & Lokasi dari Poster -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-yellow-400/20 text-yellow-300 flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-calendar-check"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] text-sky-200">Hari & Tanggal</p>
+                                    <p class="text-xs sm:text-sm font-bold">Kamis, 3 Des 2026</p>
+                                </div>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-yellow-400/20 text-yellow-300 flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] text-sky-200">Waktu Pelaksanaan</p>
+                                    <p class="text-xs sm:text-sm font-bold">08.00 – 15.00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-yellow-400/20 text-yellow-300 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] text-sky-200">Tempat</p>
+                                    <p class="text-xs sm:text-sm font-bold">Aula Lt. 2 SMK Muh 01</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Speaker Card -->
+                    <div class="lg:col-span-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 sm:p-6 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <!-- Potret Ilustrasi WPAP / Low-Poly Latif Safruddin -->
+                            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-lg shadow-yellow-500/20 shrink-0 bg-[#0d3b56]">
+                                <svg viewBox="0 0 200 220" class="w-full h-full object-cover" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Foto Narasumber Latif Safruddin">
+                                    <!-- Background Geometric WPAP -->
+                                    <rect width="200" height="220" fill="#0d3b56"/>
+                                    <polygon points="0,0 90,0 50,90 0,70" fill="#134e6f"/>
+                                    <polygon points="130,0 200,0 200,110 155,85" fill="#f25c54"/>
+                                    <polygon points="155,85 200,110 200,185 145,165" fill="#16a3a6"/>
+                                    <polygon points="0,70 50,90 45,165 0,150" fill="#f5e6cc"/>
+                                    <polygon points="0,150 45,165 30,220 0,220" fill="#8b5cf6"/>
+                                    <polygon points="145,165 200,185 200,220 165,220" fill="#e9d5ff"/>
+                                    <!-- Decorative WPAP Lines & Dots -->
+                                    <line x1="15" y1="88" x2="55" y2="96" stroke="#f97316" stroke-width="2.5"/>
+                                    <line x1="14" y1="95" x2="52" y2="103" stroke="#f97316" stroke-width="2.5"/>
+                                    <circle cx="182" cy="65" r="2.5" fill="#ffffff"/>
+                                    <circle cx="182" cy="75" r="2.5" fill="#ffffff"/>
+                                    <circle cx="182" cy="85" r="2.5" fill="#ffffff"/>
+                                    <circle cx="182" cy="95" r="2.5" fill="#ffffff"/>
+                                    <circle cx="26" cy="128" r="2.2" fill="#facc15"/>
+                                    <circle cx="35" cy="128" r="2.2" fill="#facc15"/>
+                                    <circle cx="26" cy="137" r="2.2" fill="#facc15"/>
+                                    <circle cx="35" cy="137" r="2.2" fill="#facc15"/>
+                                    <!-- Shoulders & Dark Shirt -->
+                                    <polygon points="20,220 45,175 155,175 180,220" fill="#0f172a"/>
+                                    <polygon points="20,220 45,175 68,185 52,220" fill="#6d28d9"/>
+                                    <polygon points="52,220 68,185 88,220" fill="#0d9488"/>
+                                    <polygon points="155,175 180,220 145,220 132,186" fill="#0e7490"/>
+                                    <polygon points="62,175 100,192 138,175 128,166 72,166" fill="#1e293b"/>
+                                    <!-- Neck -->
+                                    <polygon points="66,152 134,152 138,178 100,188 62,178" fill="#d97757"/>
+                                    <polygon points="66,152 92,162 84,182 62,178" fill="#9a3412"/>
+                                    <polygon points="134,152 138,178 114,183 110,162" fill="#b45309"/>
+                                    <!-- Hair (Top & Sides) -->
+                                    <polygon points="54,68 62,36 86,20 116,20 140,36 146,68 138,44 114,30 86,30 62,44" fill="#090d16"/>
+                                    <polygon points="48,96 54,68 62,56 58,98" fill="#090d16"/>
+                                    <polygon points="152,96 146,68 138,56 142,98" fill="#090d16"/>
+                                    <!-- Forehead Facets -->
+                                    <polygon points="62,44 86,30 114,30 138,44 134,74 100,72 66,74" fill="#fde68a"/>
+                                    <polygon points="86,30 114,30 100,56" fill="#fef3c7"/>
+                                    <polygon points="62,44 86,30 82,66 60,68" fill="#fdba74"/>
+                                    <polygon points="114,30 138,44 140,68 118,66" fill="#fb923c"/>
+                                    <!-- Cheeks & Jaw Facets -->
+                                    <polygon points="56,74 74,74 76,126 58,120" fill="#fed7aa"/>
+                                    <polygon points="126,74 144,74 142,120 124,126" fill="#f97316"/>
+                                    <polygon points="58,120 76,126 84,158 66,148" fill="#ea580c"/>
+                                    <polygon points="124,126 142,120 134,148 116,158" fill="#c2410c"/>
+                                    <polygon points="76,126 100,122 124,126 116,158 84,158" fill="#fdba74"/>
+                                    <!-- Eyes & Eyebrows -->
+                                    <polygon points="64,75 88,73 91,79 65,80" fill="#1e1b18"/>
+                                    <polygon points="112,73 136,75 135,80 109,79" fill="#1e1b18"/>
+                                    <ellipse cx="77" cy="85" rx="9" ry="4.5" fill="#ffffff"/>
+                                    <circle cx="77" cy="85" r="3.6" fill="#0f172a"/>
+                                    <circle cx="78" cy="84" r="1.1" fill="#ffffff"/>
+                                    <ellipse cx="123" cy="85" rx="9" ry="4.5" fill="#ffffff"/>
+                                    <circle cx="123" cy="85" r="3.6" fill="#0f172a"/>
+                                    <circle cx="124" cy="84" r="1.1" fill="#ffffff"/>
+                                    <!-- Nose Bridge & Tip -->
+                                    <polygon points="94,72 106,72 108,108 92,108" fill="#fde047"/>
+                                    <polygon points="88,104 100,100 112,104 106,113 94,113" fill="#fb923c"/>
+                                    <polygon points="94,111 106,111 100,115" fill="#7c2d12"/>
+                                    <!-- Lips & Mustache -->
+                                    <polygon points="84,125 100,122 116,125 100,128" fill="#3f2e26"/>
+                                    <polygon points="86,128 100,126 114,128 100,131" fill="#be185d"/>
+                                    <polygon points="88,131 112,131 106,136 94,136" fill="#f472b6"/>
+                                    <!-- Goatee Beard -->
+                                    <polygon points="92,137 108,137 105,143 95,143" fill="#090d16"/>
+                                    <polygon points="82,145 118,145 114,166 100,174 86,166" fill="#090d16"/>
+                                    <polygon points="88,147 96,147 93,168" fill="#1e293b"/>
+                                    <polygon points="104,147 112,147 107,168" fill="#1e293b"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-yellow-300 font-bold">Narasumber Pelatihan</span>
+                                <h3 class="text-xl font-display font-bold text-white">Latif Safruddin</h3>
+                                <p class="text-xs text-sky-200">Founder PT Web Digital Marketing<br>Konsultan AI | Pengembang Web</p>
+                                <div class="flex flex-wrap gap-1.5 mt-2">
+                                    <span class="px-2 py-0.5 rounded-md bg-white/15 text-[10px] font-semibold text-yellow-200">AI Pembelajaran</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-white/15 text-[10px] font-semibold text-sky-200">Konten Video & Digital</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-white/15 pt-3 text-xs text-sky-100 space-y-1.5">
+                            <p class="font-semibold text-yellow-300">Alur Kelulusan & Sertifikat (32 JP):</p>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 1. Isi Formulir Pendaftaran Peserta</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 2. Pelajari 4 Modul Praktik AI & Video</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 3. Kumpulkan Tugas Praktik (Opsional / Pendukung)</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 4. Jawab Evaluasi Benar Semua (Skor 100) &rarr; Sertifikat Otomatis Terbuka</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Pendaftaran -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="font-display text-2xl font-bold text-slate-900 dark:text-white">Formulir Pendaftaran Peserta</h2>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Nama dan gelar yang Anda masukkan akan dicetak otomatis pada Sertifikat Kelulusan.</p>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 text-xs font-bold">Langkah 1 / 4</span>
+                    </div>
+
+                    <form id="form-pendaftaran" onsubmit="handleRegistration(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Nama Lengkap & Gelar <span class="text-rose-500">*</span></label>
+                                <input type="text" id="reg-nama" required placeholder="Contoh: Ahmad Fauzi, S.Pd., M.Pd."
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">NIP / NUPTK / NIK <span class="text-slate-400 font-normal">(Opsional)</span></label>
+                                <input type="text" id="reg-nip" placeholder="Contoh: 198504122010011012"
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Asal Sekolah / Instansi <span class="text-rose-500">*</span></label>
+                                <input type="text" id="reg-sekolah" required value="SMK Muhammadiyah 01 Keling Jepara"
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Mata Pelajaran / Bidang Tugas <span class="text-rose-500">*</span></label>
+                                <input type="text" id="reg-mapel" required placeholder="Contoh: Produktif TKJ / Bahasa Indonesia"
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Nomor WhatsApp <span class="text-rose-500">*</span></label>
+                                <input type="tel" id="reg-wa" required placeholder="Contoh: 081234567890"
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Email Aktif <span class="text-rose-500">*</span></label>
+                                <input type="email" id="reg-email" required placeholder="guru@smkmuh01keling.sch.id"
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition">
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                            <button type="button" onclick="fillDemoData()" class="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Isi Contoh Data Cepat
+                            </button>
+                            <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold shadow-lg shadow-sky-600/30 transition transform active:scale-95 flex items-center justify-center gap-2">
+                                <span>Daftar & Mulai Pelatihan</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sidebar Ringkasan Kurikulum -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                        <h3 class="font-display font-bold text-lg mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-sky-500"></i> 4 Materi Utama Workshop
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700">
+                                <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-yellow-400 text-slate-900">Praktik 1</span>
+                                <h4 class="font-bold text-sm mt-1">Membuat Materi Pembelajaran dengan AI</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Menyusun materi ajar, soal evaluasi, dan rangkuman otomatis.</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700">
+                                <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-yellow-400 text-slate-900">Praktik 2</span>
+                                <h4 class="font-bold text-sm mt-1">Membuat Video Edukasi</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Menulis naskah AI, menyusun storyboard, dan produksi video.</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700">
+                                <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-yellow-400 text-slate-900">Praktik 3</span>
+                                <h4 class="font-bold text-sm mt-1">Membuat Konten Promosi Sekolah</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Desain poster menarik, video profil sekolah, dan konten kreatif.</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700">
+                                <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-yellow-400 text-slate-900">Praktik 4</span>
+                                <h4 class="font-bold text-sm mt-1">Publikasi Media Sosial</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Membuat caption menarik, riset hashtag, dan publikasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: MATERI PELATIHAN                -->
+        <!-- ========================================== -->
+        <section id="sec-materi" class="tab-section hidden space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Langkah 2 / 4 &bull; Modul Pembelajaran Lengkap</span>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold mt-1">Materi Praktek AI & Konten Video</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Pelajari 4 modul praktik beserta panduan penggunaan tools (ChatGPT, Gemini, Canva, CapCut, & Google Flow).</p>
+                </div>
+                <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800 px-4 py-3 rounded-2xl shrink-0">
+                    <div class="text-right">
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Progres Materi</p>
+                        <p class="font-bold text-sm text-sky-600 dark:text-sky-400"><span id="materi-count">0</span> / 4 Selesai</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border-4 border-sky-500 flex items-center justify-center font-bold text-xs" id="materi-percent">0%</div>
+                </div>
+            </div>
+
+            <!-- Grid 4 Modul Praktik Detail -->
+            <div id="modul-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Di-render melalui JS -->
+            </div>
+
+            <!-- Panduan Praktis Tools: ChatGPT & Google Flow -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-xl bg-yellow-400 text-slate-900 flex items-center justify-center font-bold"><i class="fa-solid fa-book-open"></i></span>
+                    <h3 class="font-display text-xl sm:text-2xl font-bold">Panduan Teknis Penggunaan Tools AI</h3>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Panduan 1: Cara Jalankan ChatGPT -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase text-emerald-600 dark:text-emerald-400">Panduan Tool 1</span>
+                                    <h4 class="font-display text-lg font-bold">Cara Jalankan ChatGPT</h4>
+                                </div>
+                            </div>
+                            <a href="https://chatgpt.com" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition">
+                                Buka Web <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                            </a>
+                        </div>
+
+                        <ol class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center shrink-0">1</span><span><strong>Buka Website:</strong> Kunjungi <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-sky-600 dark:text-sky-400">https://chatgpt.com</code> atau buka aplikasi ChatGPT di HP.</span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center shrink-0">2</span><span><strong>Login / Daftar:</strong> Masuk dengan akun Google, email, atau nomor HP (klik <em>Sign Up</em> jika belum punya akun).</span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center shrink-0">3</span><span><strong>Tulis Prompt:</strong> Ketik perintah jelas, misal: <em>“Buatkan materi pembelajaran tentang energi terbarukan.”</em></span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center shrink-0">4</span><span><strong>Kirim & Tunggu Jawaban:</strong> Tekan Enter atau tombol kirim, AI akan menyusun jawaban cepat dan terstruktur.</span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center shrink-0">5</span><span><strong>Salin & Gunakan:</strong> Salin hasil untuk bahan ajar, desain Canva, atau naskah konten.</span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center shrink-0">6</span><span><strong>Eksplorasi Fitur Lain:</strong> Buat gambar (DALL·E), analisis data, terjemahan, dan pembuatan kuis interaktif.</span></li>
+                        </ol>
+
+                        <div class="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-xs space-y-1">
+                            <p class="font-bold text-emerald-800 dark:text-emerald-300"><i class="fa-solid fa-star mr-1"></i> Tips Sukses ChatGPT:</p>
+                            <p class="text-emerald-700 dark:text-emerald-400">Gunakan prompt yang jelas, minta hasil dalam format tertentu (tabel, poin, atau paragraf), dan selalu periksa kembali hasilnya sebelum dibagikan ke siswa.</p>
+                        </div>
+                    </div>
+
+                    <!-- Panduan 2: Cara Menjalankan Google Flow -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-2xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-film"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase text-sky-600 dark:text-sky-400">Panduan Tool 2 &bull; Video AI</span>
+                                    <h4 class="font-display text-lg font-bold">Cara Menjalankan Google Flow</h4>
+                                </div>
+                            </div>
+                            <a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition">
+                                Buka Flow <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                            </a>
+                        </div>
+
+                        <ol class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">1</span><span><strong>Buka Google Flow:</strong> Buka Chrome/Edge, kunjungi <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-sky-600 dark:text-sky-400">labs.google/fx/tools/flow</code>.</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">2</span><span><strong>Login Akun Google:</strong> Masuk menggunakan akun Google (pastikan usia & wilayah memenuhi syarat akses).</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">3</span><span><strong>Buat Project Baru:</strong> Klik <em>“New project”</em> atau buka project yang sudah ada.</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">4</span><span><strong>Tulis Prompt Video:</strong> Jelaskan subjek, aksi, lokasi, suasana, pencahayaan, gaya kamera, dan hasil yang diinginkan.</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">5</span><span><strong>Pilih Mode Video:</strong> Pilih mode <em>“Video”</em>, atur rasio/orientasi (misal 9:16), jumlah hasil, dan durasi.</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">6</span><span><strong>Tambahkan Foto (Opsional):</strong> Unggah gambar referensi atau pilih <em>start/end frame</em> agar visual terarah.</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">7</span><span><strong>Generate & Tinjau:</strong> Klik <em>“Generate”</em>, tunggu proses, lalu periksa hasil video.</span></li>
+                            <li class="flex gap-2.5"><span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs flex items-center justify-center shrink-0">8</span><span><strong>Perbaiki & Simpan:</strong> Ubah prompt bila perlu, buat ulang, lalu unduh video yang sudah sesuai.</span></li>
+                        </ol>
+
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-sky-600 dark:text-sky-400">Contoh Prompt Video Google Flow:</span>
+                                <button onclick="copyRawString('Buat video edukasi sinematik tentang seorang guru SMK sedang menjelaskan energi terbarukan di ruang kelas modern. Kamera bergerak perlahan, pencahayaan cerah, suasana inspiratif, visual realistis, gerakan natural, format vertikal 9:16.')" class="text-xs font-semibold hover:text-sky-500"><i class="fa-regular fa-copy"></i> Salin</button>
+                            </div>
+                            <p class="italic text-slate-600 dark:text-slate-300">“Buat video edukasi sinematik tentang seorang guru SMK sedang menjelaskan energi terbarukan di ruang kelas modern. Kamera bergerak perlahan, pencahayaan cerah, suasana inspiratif, visual realistis, gerakan natural, format vertikal 9:16.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive AI Prompt Generator Helper -->
+            <div class="bg-gradient-to-r from-slate-900 to-sky-950 text-white rounded-3xl p-6 sm:p-8 shadow-lg border border-sky-500/30">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="space-y-2 max-w-2xl">
+                        <span class="px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-xs font-bold uppercase">Lab Prompt Instan</span>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold">Generator Prompt AI Otomatis untuk Guru</h3>
+                        <p class="text-sm text-sky-200">Masukkan topik mata pelajaran Anda untuk membuat perintah (prompt) siap pakai di ChatGPT / Gemini.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <input type="text" id="prompt-topic" placeholder="Misal: Jaringan Komputer Dasar" class="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-sky-300/60 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        <button onclick="generateCustomPrompt()" class="px-5 py-3 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold text-sm transition shrink-0">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Buat Prompt
+                        </button>
+                    </div>
+                </div>
+                <div id="generated-prompt-box" class="hidden mt-5 p-4 rounded-2xl bg-black/40 border border-white/15">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-semibold text-yellow-300">Hasil Prompt Siap Copy:</span>
+                        <button onclick="copyText('generated-prompt-text')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-lg transition">
+                            <i class="fa-regular fa-copy mr-1"></i> Salin Prompt
+                        </button>
+                    </div>
+                    <p id="generated-prompt-text" class="text-xs sm:text-sm text-slate-200 font-mono leading-relaxed"></p>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <button onclick="navigateTo('tugas')" class="px-7 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold shadow-lg transition flex items-center gap-2">
+                    <span>Lanjut ke Tugas Praktik</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 3: TUGAS PRAKTIK                   -->
+        <!-- ========================================== -->
+        <section id="sec-tugas" class="tab-section hidden space-y-6">
+            <!-- Header Modul Tugas Praktik -->
+            <div class="bg-gradient-to-r from-sky-700 via-blue-800 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-md border border-sky-500/30">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="space-y-1.5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-xs font-extrabold uppercase">
+                            <i class="fa-solid fa-clipboard-check"></i> Modul Tugas Praktik
+                        </div>
+                        <h2 class="font-display text-2xl sm:text-3xl font-extrabold">Tugas Praktik & Proyek Akhir Guru</h2>
+                        <p class="text-xs sm:text-sm text-sky-100">Selesaikan 4 tugas praktik berikut dan satukan dalam satu folder Proyek Akhir Karya Digital Guru.</p>
+                    </div>
+                    <div class="grid grid-cols-2 sm:flex items-center gap-3 text-xs bg-white/10 backdrop-blur-sm p-3.5 rounded-2xl border border-white/15 shrink-0">
+                        <div>
+                            <span class="text-sky-200 block">Jadwal & Waktu</span>
+                            <strong class="text-white">3 Des 2026 &bull; 08.00–15.00</strong>
+                        </div>
+                        <div class="border-l border-white/20 pl-3">
+                            <span class="text-sky-200 block">Instruktur</span>
+                            <strong class="text-yellow-300">Latif Safruddin</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Rincian 4 Tugas Praktik sesuai Poster Modul Tugas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- 1. Praktik 1 -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-xl bg-sky-600 text-white font-display font-extrabold flex items-center justify-center text-sm">1</span>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase text-sky-600 dark:text-sky-400">Praktik 1 (Bobot 20%)</span>
+                                <h3 class="font-display font-bold text-base sm:text-lg">Membuat Materi Pembelajaran dengan AI</h3>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-robot text-2xl text-emerald-500"></i>
+                    </div>
+                    <div class="text-xs sm:text-sm space-y-2.5">
+                        <p class="bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200 p-3 rounded-xl border border-sky-100 dark:border-sky-900/50">
+                            <strong class="text-rose-600 dark:text-rose-400"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan:</strong> Guru mampu memanfaatkan AI untuk membuat bahan ajar.
+                        </p>
+                        <div>
+                            <p class="font-bold text-slate-700 dark:text-slate-200 mb-1.5"><i class="fa-solid fa-list-check text-sky-500 mr-1"></i> Rincian Tugas:</p>
+                            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Pilih mapel, buat materi pembelajaran dengan ChatGPT</span></li>
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Buat 10 soal pilihan ganda + kunci jawaban</span></li>
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Buat rangkuman materi pembelajaran</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Praktik 2 -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-xl bg-sky-600 text-white font-display font-extrabold flex items-center justify-center text-sm">2</span>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase text-sky-600 dark:text-sky-400">Praktik 2 (Bobot 25%)</span>
+                                <h3 class="font-display font-bold text-base sm:text-lg">Membuat Video Edukasi dengan AI</h3>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-video text-2xl text-sky-500"></i>
+                    </div>
+                    <div class="text-xs sm:text-sm space-y-2.5">
+                        <p class="bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200 p-3 rounded-xl border border-sky-100 dark:border-sky-900/50">
+                            <strong class="text-rose-600 dark:text-rose-400"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan:</strong> Guru mampu membuat video pembelajaran yang menarik.
+                        </p>
+                        <div>
+                            <p class="font-bold text-slate-700 dark:text-slate-200 mb-1.5"><i class="fa-solid fa-list-check text-sky-500 mr-1"></i> Rincian Tugas:</p>
+                            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Tentukan topik, buat naskah & storyboard video</span></li>
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Produksi video edukasi berdurasi 30–60 detik</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Praktik 3 -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-xl bg-sky-600 text-white font-display font-extrabold flex items-center justify-center text-sm">3</span>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase text-sky-600 dark:text-sky-400">Praktik 3 (Bobot 20%)</span>
+                                <h3 class="font-display font-bold text-base sm:text-lg">Membuat Konten Promosi Sekolah</h3>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-bullhorn text-2xl text-amber-500"></i>
+                    </div>
+                    <div class="text-xs sm:text-sm space-y-2.5">
+                        <p class="bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200 p-3 rounded-xl border border-sky-100 dark:border-sky-900/50">
+                            <strong class="text-rose-600 dark:text-rose-400"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan:</strong> Guru mampu membuat konten kreatif untuk memperkenalkan sekolah.
+                        </p>
+                        <div>
+                            <p class="font-bold text-slate-700 dark:text-slate-200 mb-1.5"><i class="fa-solid fa-list-check text-sky-500 mr-1"></i> Rincian Tugas:</p>
+                            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Buat poster, video profil, dan narasi promosi SMK Muhammadiyah 01 Keling Jepara</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Praktik 4 -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-xl bg-sky-600 text-white font-display font-extrabold flex items-center justify-center text-sm">4</span>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase text-sky-600 dark:text-sky-400">Praktik 4 (Bobot 15%)</span>
+                                <h3 class="font-display font-bold text-base sm:text-lg">Publikasi Media Sosial</h3>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-share-nodes text-2xl text-pink-500"></i>
+                    </div>
+                    <div class="text-xs sm:text-sm space-y-2.5">
+                        <p class="bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200 p-3 rounded-xl border border-sky-100 dark:border-sky-900/50">
+                            <strong class="text-rose-600 dark:text-rose-400"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan:</strong> Guru mampu mempublikasikan karya digital secara menarik.
+                        </p>
+                        <div>
+                            <p class="font-bold text-slate-700 dark:text-slate-200 mb-1.5"><i class="fa-solid fa-list-check text-sky-500 mr-1"></i> Rincian Tugas:</p>
+                            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
+                                <li class="flex items-center gap-2"><input type="checkbox" class="task-check rounded text-sky-600 w-4 h-4"> <span>Buat caption menarik, 5 hashtag relevan, dan konten siap posting (IG / YouTube / TikTok / FB)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panduan Proyek Akhir & Penilaian + Jadwal Singkat -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div class="lg:col-span-6 bg-gradient-to-br from-sky-800 to-blue-950 text-white rounded-3xl p-6 sm:p-7 shadow-md border border-sky-500/30 space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-xs font-extrabold uppercase"><i class="fa-solid fa-trophy mr-1"></i> Proyek Akhir – Karya Digital Guru</span>
+                            <span class="text-xs text-sky-200 font-semibold">Bobot Kreativitas: 20%</span>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">Tugas Wajib: Satu Paket Karya Digital</h3>
+                        <div class="space-y-2 text-xs sm:text-sm text-sky-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-yellow-400"></i> Materi pembelajaran + 10 soal pilihan ganda</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-yellow-400"></i> Video edukasi (30–60 detik)</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-yellow-400"></i> Poster atau infografis promosi sekolah</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-yellow-400"></i> Caption menarik + 5 hashtag relevan</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-yellow-400"></i> Dikumpulkan dalam satu folder Google Drive</div>
+                        </div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-yellow-400 text-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs shadow">
+                        <div>
+                            <span class="font-extrabold uppercase block text-[11px]">Format Nama Folder Wajib:</span>
+                            <code id="folder-format-text" class="font-mono font-extrabold text-slate-950">NAMA GURU – MAPEL – SMK MUHAMMADIYAH 01 KELING</code>
+                        </div>
+                        <button type="button" onclick="copyFolderFormat()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-yellow-300 font-bold shrink-0 hover:bg-slate-800 transition">
+                            <i class="fa-regular fa-copy mr-1"></i> Salin Format
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabel Komponen Penilaian & Jadwal Singkat -->
+                <div class="lg:col-span-6 bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Komponen Penilaian -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-base mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-chart-pie text-sky-500"></i> Komponen Penilaian
+                            </h3>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                                    <span>Praktik 1: Materi Pembelajaran</span>
+                                    <span class="font-bold text-sky-600 dark:text-sky-400">20%</span>
+                                </div>
+                                <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                                    <span>Praktik 2: Video Edukasi</span>
+                                    <span class="font-bold text-sky-600 dark:text-sky-400">25%</span>
+                                </div>
+                                <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                                    <span>Praktik 3: Promosi Sekolah</span>
+                                    <span class="font-bold text-sky-600 dark:text-sky-400">20%</span>
+                                </div>
+                                <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                                    <span>Praktik 4: Publikasi Medsos</span>
+                                    <span class="font-bold text-sky-600 dark:text-sky-400">15%</span>
+                                </div>
+                                <div class="flex justify-between py-1.5">
+                                    <span>Proyek Akhir & Kreativitas</span>
+                                    <span class="font-bold text-sky-600 dark:text-sky-400">20%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t-2 border-slate-200 dark:border-slate-700 flex justify-between text-xs font-extrabold bg-yellow-50 dark:bg-yellow-950/30 px-3 py-2 rounded-xl">
+                            <span>Total Penilaian</span>
+                            <span class="text-emerald-600 dark:text-emerald-400">100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Jadwal Kegiatan Singkat -->
+                    <div class="sm:border-l sm:border-slate-100 sm:dark:border-slate-800 sm:pl-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-base mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-days text-amber-500"></i> Jadwal Kegiatan
+                            </h3>
+                            <ul class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                    <div>
+                                        <strong class="block text-slate-800 dark:text-slate-100">Sesi 1</strong>
+                                        <span>Pembukaan & Pengenalan AI</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                    <div>
+                                        <strong class="block text-slate-800 dark:text-slate-100">Sesi 2</strong>
+                                        <span>Pelaksanaan Praktik 1 – 4</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                    <div>
+                                        <strong class="block text-slate-800 dark:text-slate-100">Sesi 3</strong>
+                                        <span>Penyusunan Proyek Akhir</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                    <div>
+                                        <strong class="block text-slate-800 dark:text-slate-100">Sesi 4</strong>
+                                        <span>Presentasi & Evaluasi</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 italic">
+                            “Mari menjadi guru kreatif, inovatif, dan melek teknologi!”
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Langkah 3 / 4 &bull; Unggah Karya</span>
+                        <h2 class="font-display text-2xl sm:text-3xl font-bold mt-1">Pengumpulan Tugas Praktik Guru</h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Kumpulkan tautan folder Google Drive / postingan media sosial hasil praktik Anda.</p>
+                    </div>
+                    <div id="tugas-status-badge" class="px-4 py-2 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-bold self-start">
+                        <i class="fa-solid fa-clock mr-1"></i> Menunggu Pengumpulan
+                    </div>
+                </div>
+
+                <form id="form-tugas" onsubmit="handleTaskSubmission(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Pilih Fokus Karya Utama yang Dikumpulkan <span class="text-rose-500">*</span></label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="kategori_tugas" value="Paket Lengkap Proyek Akhir (Praktik 1-4)" checked class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 peer-checked:border-sky-500 peer-checked:bg-sky-50 dark:peer-checked:bg-sky-900/30 transition h-full">
+                                    <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400">Rekomendasi</span>
+                                    <p class="font-bold text-xs sm:text-sm mt-0.5">Paket Proyek Akhir</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="kategori_tugas" value="Praktik 1: Materi Pembelajaran & 10 Soal AI" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 peer-checked:border-sky-500 peer-checked:bg-sky-50 dark:peer-checked:bg-sky-900/30 transition h-full">
+                                    <span class="text-[11px] font-bold text-sky-600 dark:text-sky-400">Praktik 1</span>
+                                    <p class="font-bold text-xs sm:text-sm mt-0.5">Materi & Soal AI</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="kategori_tugas" value="Praktik 2: Video Edukasi 30-60 Detik" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 peer-checked:border-sky-500 peer-checked:bg-sky-50 dark:peer-checked:bg-sky-900/30 transition h-full">
+                                    <span class="text-[11px] font-bold text-sky-600 dark:text-sky-400">Praktik 2</span>
+                                    <p class="font-bold text-xs sm:text-sm mt-0.5">Video Edukasi AI</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="kategori_tugas" value="Praktik 3: Poster / Video Promosi Sekolah" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 peer-checked:border-sky-500 peer-checked:bg-sky-50 dark:peer-checked:bg-sky-900/30 transition h-full">
+                                    <span class="text-[11px] font-bold text-sky-600 dark:text-sky-400">Praktik 3</span>
+                                    <p class="font-bold text-xs sm:text-sm mt-0.5">Promosi Sekolah</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="kategori_tugas" value="Praktik 4: Publikasi Media Sosial" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 peer-checked:border-sky-500 peer-checked:bg-sky-50 dark:peer-checked:bg-sky-900/30 transition h-full">
+                                    <span class="text-[11px] font-bold text-sky-600 dark:text-sky-400">Praktik 4</span>
+                                    <p class="font-bold text-xs sm:text-sm mt-0.5">Publikasi Medsos</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1.5">Judul Karya / Topik Pembelajaran <span class="text-rose-500">*</span></label>
+                            <input type="text" id="tugas-judul" required placeholder="Contoh: Video Pembelajaran Jaringan Dasar Kelas X"
+                                class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1.5">Tautan Hasil Karya (Google Drive / YouTube / TikTok / Canva) <span class="text-rose-500">*</span></label>
+                            <input type="url" id="tugas-link" required placeholder="https://drive.google.com/... atau https://youtu.be/..."
+                                class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-1.5">Prompt AI yang Digunakan & Deskripsi Singkat Karya <span class="text-rose-500">*</span></label>
+                        <textarea id="tugas-deskripsi" rows="4" required placeholder="Tuliskan prompt yang Anda gunakan pada ChatGPT/Gemini/Canva serta penjelasan singkat proses pembuatannya..."
+                            class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                        <button type="button" onclick="fillDemoTask()" class="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Isi Contoh Tugas Cepat
+                        </button>
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold shadow-lg shadow-emerald-600/30 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Kirim Tugas & Lanjut Evaluasi</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 4: EVALUASI / POST-TEST            -->
+        <!-- ========================================== -->
+        <section id="sec-evaluasi" class="tab-section hidden space-y-6">
+            <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Langkah 4 / 4 &bull; Uji Pemahaman</span>
+                        <h2 class="font-display text-2xl sm:text-3xl font-bold mt-1">Evaluasi Pelatihan Praktik</h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Jawab 10 pertanyaan pilihan ganda berikut. Jika <strong>benar semua (10/10 &bull; Skor 100)</strong>, sertifikat atas nama Anda langsung terbuka dan dapat diunduh otomatis.</p>
+                    </div>
+                    <div id="eval-score-display" class="hidden px-5 py-3 rounded-2xl bg-sky-50 dark:bg-sky-900/40 border border-sky-200 dark:border-sky-800 text-center">
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Skor Terakhir Anda</p>
+                        <p class="text-2xl font-extrabold text-sky-600 dark:text-sky-400" id="eval-score-value">0</p>
+                    </div>
+                </div>
+
+                <!-- Identitas Peserta & Petunjuk Pengerjaan sesuai Lembar Evaluasi -->
+                <div class="bg-slate-50 dark:bg-slate-800/70 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-700 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs sm:text-sm">
+                    <div class="space-y-1">
+                        <p><span class="text-slate-500 dark:text-slate-400">Nama Peserta:</span> <strong id="eval-participant-name" class="text-slate-900 dark:text-white">-</strong></p>
+                        <p><span class="text-slate-500 dark:text-slate-400">Unit Kerja:</span> <strong id="eval-participant-school" class="text-slate-900 dark:text-white">SMK Muhammadiyah 01 Keling Jepara</strong></p>
+                    </div>
+                    <div class="space-y-1 sm:text-right">
+                        <p><span class="text-slate-500 dark:text-slate-400">Tanggal Pelaksanaan:</span> <strong class="text-slate-900 dark:text-white">Kamis, 3 Desember 2026</strong></p>
+                        <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Pilih satu jawaban yang paling tepat (A, B, C, atau D).</p>
+                    </div>
+                </div>
+
+                <!-- Quiz Container -->
+                <form id="quiz-form" onsubmit="submitEvaluation(event)" class="space-y-6">
+                    <div id="quiz-questions" class="space-y-6">
+                        <!-- Questions injected via JS -->
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Pastikan seluruh soal telah terjawab sebelum menekan tombol kirim.</p>
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-check-double"></i>
+                            <span>Selesaikan Evaluasi & Cek Kelulusan</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 5: SERTIFIKAT KELULUSAN            -->
+        <!-- ========================================== -->
+        <section id="sec-sertifikat" class="tab-section hidden space-y-6">
+            <!-- Lock State Warning (Shown if requirements not met) -->
+            <div id="cert-locked" class="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 text-center border border-slate-200 dark:border-slate-800 shadow-sm max-w-2xl mx-auto space-y-5">
+                <div class="w-20 h-20 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-500 flex items-center justify-center text-3xl mx-auto">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h2 class="font-display text-2xl font-bold">Sertifikat Belum Terbuka</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Untuk mencetak atau mengunduh Sertifikat Pelatihan (32 JP), silakan selesaikan tahapan berikut terlebih dahulu:</p>
+                
+                <div class="bg-slate-50 dark:bg-slate-800/70 rounded-2xl p-5 text-left space-y-3 text-sm">
+                    <div class="flex items-center justify-between">
+                        <span>1. Pendaftaran Peserta</span>
+                        <span id="req-1" class="font-bold text-rose-500"><i class="fa-solid fa-circle-xmark"></i> Belum</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>2. Evaluasi Benar Semua (10/10 &bull; Skor 100)</span>
+                        <span id="req-2" class="font-bold text-rose-500"><i class="fa-solid fa-circle-xmark"></i> Belum</span>
+                    </div>
+                </div>
+
+                <button onclick="goToNextIncompleteStep()" class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm transition">
+                    Lanjutkan Tahapan Pelatihan
+                </button>
+            </div>
+
+            <!-- Unlocked Certificate View -->
+            <div id="cert-unlocked" class="hidden space-y-6">
+                <!-- Action Bar -->
+                <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 p-5 rounded-2xl">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-emerald-900 dark:text-emerald-300">Selamat! Seluruh Jawaban Evaluasi Benar (100/100)</h3>
+                            <p class="text-xs text-emerald-700 dark:text-emerald-400">Sertifikat resmi atas nama <strong id="cert-banner-name">-</strong> telah terbuka dan siap diunduh.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                        <button type="button" onclick="downloadCertificateImage()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Download Sertifikat (PNG)</span>
+                        </button>
+                        <button type="button" onclick="window.print()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-print"></i>
+                            <span>Cetak / PDF</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Printable Certificate Frame -->
+                <div class="overflow-x-auto pb-4">
+                    <div id="certificate-printable" class="min-w-[800px] max-w-4xl mx-auto bg-white text-slate-900 p-10 sm:p-14 rounded-xl shadow-2xl border-[10px] border-double border-sky-700 relative certificate-border">
+                        <!-- Corner Ornaments -->
+                        <div class="absolute top-3 left-3 w-12 h-12 border-t-4 border-l-4 border-yellow-500"></div>
+                        <div class="absolute top-3 right-3 w-12 h-12 border-t-4 border-r-4 border-yellow-500"></div>
+                        <div class="absolute bottom-3 left-3 w-12 h-12 border-b-4 border-l-4 border-yellow-500"></div>
+                        <div class="absolute bottom-3 right-3 w-12 h-12 border-b-4 border-r-4 border-yellow-500"></div>
+
+                        <!-- Header Logos -->
+                        <div class="flex justify-between items-center border-b-2 border-slate-200 pb-5 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-sky-700 text-white flex items-center justify-center font-bold text-lg">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+                                <div class="text-left">
+                                    <p class="font-display font-extrabold text-sm text-sky-800 uppercase">SMK Muhammadiyah 01</p>
+                                    <p class="text-xs font-bold text-slate-600">KELING - JEPARA</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <span class="px-3 py-1 bg-yellow-400 text-slate-900 font-bold text-[10px] uppercase tracking-widest rounded-full">Sertifikat Kompetensi</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-right">
+                                <div>
+                                    <p class="font-display font-extrabold text-sm text-sky-700">PT WEB</p>
+                                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Digital Marketing</p>
+                                </div>
+                                <div class="w-12 h-12 rounded-xl bg-sky-500 text-white flex items-center justify-center font-extrabold text-lg">
+                                    W3
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificate Title -->
+                        <div class="text-center space-y-2 my-6">
+                            <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-sky-900 uppercase">Sertifikat</h1>
+                            <p class="text-xs font-semibold tracking-widest text-slate-500 uppercase" id="cert-number">Nomor: 042/CERT-AI/SMKMUH01/XII/2026</p>
+                            <p class="text-sm text-slate-600 pt-3">Diberikan dengan bangga kepada:</p>
+                        </div>
+
+                        <!-- Recipient Name -->
+                        <div class="text-center my-6">
+                            <h2 id="cert-participant-name" class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 border-b-2 border-sky-600 inline-block px-8 pb-2">
+                                Nama Peserta Pelatihan
+                            </h2>
+                            <p id="cert-participant-school" class="text-sm font-semibold text-slate-600 mt-2">SMK Muhammadiyah 01 Keling Jepara</p>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="text-center max-w-2xl mx-auto space-y-2 text-sm text-slate-700 leading-relaxed my-6">
+                            <p>
+                                Telah berhasil menyelesaikan dengan predikat <strong class="text-sky-800" id="cert-predicate">SANGAT BAIK</strong> pada kegiatan
+                                <strong>Pelatihan Praktek AI dan Konten Video bagi Guru</strong>
+                                <em>(“Menuju Guru Melek Teknologi, Pembelajaran Lebih Kreatif dan Inovatif”)</em>
+                                yang diselenggarakan pada tanggal <strong>3 Desember 2026</strong> bertempat di SMK Muhammadiyah 01 Keling Jepara (Setara 32 JP).
+                            </p>
+                        </div>
+
+                        <!-- Signatures -->
+                        <div class="grid grid-cols-2 gap-8 pt-8 mt-8 border-t border-slate-200 text-center text-xs">
+                            <div>
+                                <p class="text-slate-500">Mengetahui,</p>
+                                <p class="font-bold text-slate-800 mt-0.5">Kepala SMK Muhammadiyah 01 Keling</p>
+                                <div class="h-16 flex items-center justify-center">
+                                    <span class="font-serif italic text-slate-400 text-base">ttd & stempel resmi</span>
+                                </div>
+                                <p class="font-bold text-slate-900 underline">Pimpinan Sekolah</p>
+                                <p class="text-slate-500">SMK Muhammadiyah 01 Keling Jepara</p>
+                            </div>
+                            <div>
+                                <p class="text-slate-500">Jepara, 3 Desember 2026</p>
+                                <p class="font-bold text-slate-800 mt-0.5">Narasumber / Konsultan AI</p>
+                                <div class="h-16 flex items-center justify-center">
+                                    <span class="font-serif italic text-sky-600/70 text-lg font-bold">Latif Safruddin</span>
+                                </div>
+                                <p class="font-bold text-slate-900 underline">Latif Safruddin</p>
+                                <p class="text-slate-500">Founder PT Web Digital Marketing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="no-print bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <p>&copy; 2026 <strong>SMK Muhammadiyah 01 Keling Jepara</strong> &times; <strong>PT Web Digital Marketing</strong>. All rights reserved.</p>
+            <p>Instruktur: <strong class="text-slate-700 dark:text-slate-300">Latif Safruddin</strong> (Konsultan AI & Pengembang Web)</p>
+        </div>
+    </footer>
+
+    <!-- Application Logic -->
+    <script>
+        // ==========================================
+        // 1. STATE MANAGEMENT & CURRICULUM DATA
+        // ==========================================
+        const appState = {
+            darkMode: false,
+            currentTab: 'pendaftaran',
+            user: null,
+            completedModules: [false, false, false, false],
+            taskSubmitted: false,
+            taskData: null,
+            evalScore: null,
+            evalPassed: false
+        };
+
+        // Data 4 Materi Lengkap sesuai Dokumen MATERI JPG.docx
+        const modulesData = [
+            {
+                id: 0,
+                badge: "Praktik 1",
+                icon: "fa-robot",
+                title: "Membuat Materi Pembelajaran dengan AI",
+                subtitle: "Guru Kreatif, Pembelajaran Inovatif",
+                tools: ["ChatGPT", "Gemini", "Canva"],
+                tujuan: [
+                    "Mengenal AI untuk pembelajaran",
+                    "Membuat materi ajar dengan AI",
+                    "Menyusun soal dan evaluasi (10 soal pilihan ganda + jawaban & rangkuman)"
+                ],
+                langkah: [
+                    "Buka ChatGPT atau Gemini",
+                    "Tulis Prompt yang jelas sesuai topik",
+                    "Minta materi sesuai topik & tujuan pembelajaran",
+                    "Tambahkan soal evaluasi dan rangkuman",
+                    "Download / simpan hasilnya"
+                ],
+                target: "Materi ajar lengkap, 10 soal evaluasi siap digunakan, dan media pembelajaran kreatif.",
+                promptExample: "Buatkan materi pembelajaran tentang Perubahan Iklim, dilengkapi dengan tujuan pembelajaran, penjelasan sederhana, contoh, dan 5 soal evaluasi."
+            },
+            {
+                id: 1,
+                badge: "Praktik 2",
+                icon: "fa-clapperboard",
+                title: "Membuat Video Edukasi dengan AI",
+                subtitle: "Kreasi Video Mudah, Pembelajaran Lebih Menarik",
+                tools: ["ChatGPT", "Gemini", "CapCut", "Canva", "Google Flow"],
+                tujuan: [
+                    "Menulis naskah video dengan AI",
+                    "Membuat storyboard alur dan visual",
+                    "Memproduksi dan mengedit video edukasi dengan CapCut / Google Flow",
+                    "Mempublikasikan video di media sosial"
+                ],
+                langkah: [
+                    "Tentukan topik video (Misal: Tips Belajar Efektif)",
+                    "Buat naskah dengan AI (ChatGPT / Gemini)",
+                    "Susun storyboard (rancang alur dan visual)",
+                    "Produksi video (rekam atau gunakan aset AI / Google Flow)",
+                    "Edit video, tambahkan teks, efek, dan musik di CapCut / Flow",
+                    "Publikasikan di YouTube, TikTok, atau Instagram"
+                ],
+                target: "Satu video edukasi berdurasi 30–60 detik yang siap dipublikasikan.",
+                promptExample: "Buatkan naskah video pendek tentang tips belajar efektif untuk pelajar, tambahkan ide visual dan narasi yang menarik."
+            },
+            {
+                id: 2,
+                badge: "Praktik 3",
+                icon: "fa-bullhorn",
+                title: "Membuat Konten Promosi Sekolah dengan AI",
+                subtitle: "Tampilkan Keunggulan Sekolah Secara Kreatif dan Menarik",
+                tools: ["ChatGPT", "Gemini", "Canva", "CapCut"],
+                tujuan: [
+                    "Membuat konten promosi sekolah yang menarik",
+                    "Menggunakan AI untuk ide, naskah, dan desain grafis",
+                    "Mempublikasikan konten promosi di media sosial sekolah"
+                ],
+                langkah: [
+                    "Tentukan tema promosi (Misal: Keunggulan Program Keahlian, Lingkungan Sekolah, Aktivitas Belajar, Ekstrakurikuler, atau PPDB)",
+                    "Buat naskah narasi promosi dengan ChatGPT atau Gemini",
+                    "Desain poster menarik menggunakan Canva",
+                    "Buat video profil singkat dengan CapCut",
+                    "Publikasikan di Facebook, Instagram, TikTok, dan YouTube"
+                ],
+                target: "Satu konten promosi sekolah (Poster atau Video Profil) yang kreatif dan siap dipublikasikan.",
+                promptExample: "Buatkan konsep dan narasi promosi keunggulan program keahlian SMK Muhammadiyah 01 Keling Jepara untuk menarik calon siswa baru, lengkap dengan teks headline poster dan skrip video 45 detik."
+            },
+            {
+                id: 3,
+                badge: "Praktik 4",
+                icon: "fa-share-nodes",
+                title: "Publikasi Media Sosial",
+                subtitle: "Sebarkan Karya, Bangun Citra Sekolah di Dunia Digital",
+                tools: ["Facebook", "Instagram", "TikTok", "YouTube"],
+                tujuan: [
+                    "Membuat caption yang menarik dan persuasif",
+                    "Menentukan dan menggunakan hashtag yang tepat",
+                    "Mempublikasikan konten karya digital di media sosial"
+                ],
+                langkah: [
+                    "Tentukan konten yang akan dipublikasikan (poster, video edukasi, atau video profil)",
+                    "Buat caption menarik dengan bantuan AI (ChatGPT atau Gemini)",
+                    "Gunakan 5 hashtag yang relevan dengan pendidikan dan sekolah",
+                    "Publikasikan di Facebook, Instagram, TikTok, atau YouTube",
+                    "Pantau respon dan evaluasi jangkauan publikasinya"
+                ],
+                target: "Minimal satu konten siap dipublikasikan beserta caption dan 5 hashtag relevan.",
+                promptExample: "Bersama RPM, menuju masyarakat yang mandiri, produktif dan sejahtera! #RumahPemberdayaan #RPM #SMKMuhammadiyah01 #PendidikanBerkualitas #JeparaMaju"
+            }
+        ];
+
+        // Data 10 Soal Evaluasi Pelatihan Praktik (Sesuai Lembar Evaluasi Resmi)
+        const quizData = [
+            {
+                q: "Apa manfaat utama penggunaan Artificial Intelligence (AI) dalam kegiatan pembelajaran bagi guru?",
+                options: [
+                    "Menggantikan seluruh tugas guru di sekolah",
+                    "Membantu guru menyusun materi pembelajaran secara lebih efektif dan kreatif",
+                    "Mengurangi interaksi guru dengan peserta didik",
+                    "Menghilangkan kebutuhan membuat evaluasi pembelajaran"
+                ],
+                answer: 1
+            },
+            {
+                q: "Salah satu contoh penggunaan ChatGPT untuk membantu guru adalah ....",
+                options: [
+                    "Memperbaiki perangkat keras komputer",
+                    "Mengatur jadwal piket secara otomatis tanpa instruksi",
+                    "Menyusun materi ajar, soal, dan rangkuman pembelajaran",
+                    "Menggantikan kepala sekolah dalam mengambil keputusan"
+                ],
+                answer: 2
+            },
+            {
+                q: "Ketika menggunakan ChatGPT untuk membuat materi pembelajaran, hal pertama yang sebaiknya dilakukan adalah ....",
+                options: [
+                    "Memberikan instruksi atau prompt yang jelas dan spesifik",
+                    "Meminta AI membuat semua materi tanpa diperiksa",
+                    "Menyalin seluruh jawaban AI tanpa membaca",
+                    "Menggunakan pertanyaan yang tidak berhubungan dengan materi"
+                ],
+                answer: 0
+            },
+            {
+                q: "Dalam proses pembuatan video edukasi, storyboard berfungsi untuk ....",
+                options: [
+                    "Mengatur biaya pembelian kamera",
+                    "Menentukan jumlah penonton video",
+                    "Mengedit suara secara otomatis",
+                    "Merencanakan urutan adegan dan alur cerita video"
+                ],
+                answer: 3
+            },
+            {
+                q: "Langkah awal yang penting dalam membuat video edukasi menggunakan AI adalah ....",
+                options: [
+                    "Langsung mengunggah video ke media sosial",
+                    "Menentukan tema dan membuat naskah video",
+                    "Membeli kamera dengan harga mahal",
+                    "Membuat desain logo terlebih dahulu"
+                ],
+                answer: 1
+            },
+            {
+                q: "Salah satu bentuk konten kreatif untuk promosi sekolah adalah ....",
+                options: [
+                    "Membuat video profil sekolah yang menarik dan informatif",
+                    "Mengunggah konten yang tidak berkaitan dengan sekolah",
+                    "Membagikan informasi yang belum terverifikasi",
+                    "Menghindari penggunaan foto dan video kegiatan sekolah"
+                ],
+                answer: 0
+            },
+            {
+                q: "Aplikasi yang dapat digunakan untuk membagikan konten promosi sekolah melalui media sosial adalah ....",
+                options: [
+                    "Microsoft Calculator dan Notepad",
+                    "Windows Explorer dan Paint",
+                    "TikTok, Instagram, dan YouTube",
+                    "Microsoft Excel dan BIOS"
+                ],
+                answer: 2
+            },
+            {
+                q: "Apa tujuan penggunaan caption dan hashtag dalam publikasi media sosial?",
+                options: [
+                    "Membuat ukuran video menjadi lebih besar",
+                    "Menghapus komentar pengguna",
+                    "Mengurangi kualitas konten",
+                    "Membantu menjelaskan isi konten dan meningkatkan jangkauan publikasi"
+                ],
+                answer: 3
+            },
+            {
+                q: "Sebelum mempublikasikan konten video atau poster sekolah di media sosial, guru sebaiknya ....",
+                options: [
+                    "Langsung mengunggah tanpa pemeriksaan",
+                    "Memeriksa kebenaran informasi, kualitas konten, dan kesesuaian bahasa",
+                    "Menggunakan semua gambar dari internet tanpa memperhatikan hak cipta",
+                    "Mengabaikan identitas dan citra sekolah"
+                ],
+                answer: 1
+            },
+            {
+                q: "Apa tujuan utama pelatihan AI dan Konten Video bagi Guru di SMK Muhammadiyah 01 Keling Jepara?",
+                options: [
+                    "Menjadikan seluruh guru sebagai programmer profesional",
+                    "Mengurangi penggunaan teknologi dalam pembelajaran",
+                    "Mewujudkan guru yang melek teknologi serta mampu menciptakan pembelajaran lebih kreatif dan inovatif",
+                    "Menggantikan seluruh metode pembelajaran konvensional dengan video"
+                ],
+                answer: 2
+            }
+        ];
+
+        // ==========================================
+        // 2. INITIALIZATION & THEME SWITCHER
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check system preference for dark mode
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme(true);
+            }
+            renderModules();
+            renderQuiz();
+            updateProgressUI();
+        });
+
+        function toggleTheme() {
+            setTheme(!appState.darkMode);
+        }
+
+        function setTheme(isDark) {
+            appState.darkMode = isDark;
+            const htmlEl = document.documentElement;
+            const iconEl = document.getElementById('theme-icon');
+            const textEl = document.getElementById('theme-text');
+
+            if (isDark) {
+                htmlEl.classList.add('dark');
+                iconEl.className = 'fa-solid fa-sun text-base';
+                textEl.textContent = 'Mode Terang';
+            } else {
+                htmlEl.classList.remove('dark');
+                iconEl.className = 'fa-solid fa-moon text-base';
+                textEl.textContent = 'Mode Gelap';
+            }
+        }
+
+        // ==========================================
+        // 3. TOAST NOTIFICATION (NO ALERT())
+        // ==========================================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const colors = {
+                success: 'bg-emerald-600 text-white border-emerald-500',
+                error: 'bg-rose-600 text-white border-rose-500',
+                warning: 'bg-amber-500 text-slate-950 border-amber-400',
+                info: 'bg-sky-600 text-white border-sky-500'
+            };
+
+            const icons = {
+                success: 'fa-circle-check',
+                error: 'fa-circle-exclamation',
+                warning: 'fa-triangle-exclamation',
+                info: 'fa-circle-info'
+            };
+
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3.5 rounded-2xl shadow-xl border ${colors[type] || colors.info} transform transition-all duration-300 translate-y-2 opacity-0 text-sm font-medium`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icons[type] || icons.info} text-lg shrink-0"></i>
+                <span class="flex-grow">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ==========================================
+        // 4. NAVIGATION LOGIC
+        // ==========================================
+        function navigateTo(tabName) {
+            // Guard: Require registration before accessing Materi, Tugas, Evaluasi
+            if (tabName !== 'pendaftaran' && tabName !== 'sertifikat' && !appState.user) {
+                showToast('Silakan lengkapi formulir pendaftaran peserta terlebih dahulu.', 'warning');
+                tabName = 'pendaftaran';
+            }
+
+            appState.currentTab = tabName;
+
+            // Hide all sections
+            document.querySelectorAll('.tab-section').forEach(sec => sec.classList.add('hidden'));
+            // Show target section
+            const targetSec = document.getElementById(`sec-${tabName}`);
+            if (targetSec) targetSec.classList.remove('hidden');
+
+            // Update Nav Styling
+            document.querySelectorAll('.nav-step').forEach(btn => {
+                btn.className = 'nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800';
+            });
+
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) {
+                activeBtn.className = 'nav-step flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-sky-600 text-white shadow-md';
+            }
+
+            if (tabName === 'evaluasi' && appState.user) {
+                const evalName = document.getElementById('eval-participant-name');
+                const evalSchool = document.getElementById('eval-participant-school');
+                if (evalName) evalName.textContent = appState.user.nama;
+                if (evalSchool) evalSchool.textContent = appState.user.sekolah;
+            }
+
+            if (tabName === 'sertifikat') {
+                updateCertificateView();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 5. STEP 1: PENDAFTARAN
+        // ==========================================
+        function fillDemoData() {
+            document.getElementById('reg-nama').value = 'Drs. H. Budi Santoso, M.Pd.';
+            document.getElementById('reg-nip').value = '197808172005011009';
+            document.getElementById('reg-sekolah').value = 'SMK Muhammadiyah 01 Keling Jepara';
+            document.getElementById('reg-mapel').value = 'Teknik Komputer & Jaringan';
+            document.getElementById('reg-wa').value = '081228901234';
+            document.getElementById('reg-email').value = 'budi.santoso@smkmuh01keling.sch.id';
+            showToast('Contoh data peserta berhasil diisikan.', 'info');
+        }
+
+        function handleRegistration(e) {
+            e.preventDefault();
+            appState.user = {
+                nama: document.getElementById('reg-nama').value.trim(),
+                nip: document.getElementById('reg-nip').value.trim(),
+                sekolah: document.getElementById('reg-sekolah').value.trim(),
+                mapel: document.getElementById('reg-mapel').value.trim(),
+                wa: document.getElementById('reg-wa').value.trim(),
+                email: document.getElementById('reg-email').value.trim()
+            };
+
+            // Update Header Badge
+            document.getElementById('header-user-name').textContent = appState.user.nama;
+            document.getElementById('status-dot').className = 'w-2 h-2 rounded-full bg-emerald-500';
+            document.getElementById('check-pendaftaran').classList.remove('hidden');
+
+            updateProgressUI();
+            showToast(`Selamat datang, ${appState.user.nama}! Pendaftaran berhasil.`, 'success');
+            navigateTo('materi');
+        }
+
+        // ==========================================
+        // 6. STEP 2: MATERI PELATIHAN
+        // ==========================================
+        function renderModules() {
+            const container = document.getElementById('modul-container');
+            container.innerHTML = modulesData.map((mod, idx) => {
+                const isDone = appState.completedModules[idx];
+                return `
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border ${isDone ? 'border-emerald-400 dark:border-emerald-600' : 'border-slate-200 dark:border-slate-800'} shadow-sm flex flex-col justify-between transition space-y-5">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-3 py-1 rounded-full bg-yellow-400 text-slate-900 font-bold text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-play mr-1"></i> ${mod.badge}
+                            </span>
+                            <button onclick="toggleModuleComplete(${idx})" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${isDone ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'}">
+                                <i class="fa-solid ${isDone ? 'fa-circle-check' : 'fa-circle'}"></i>
+                                <span>${isDone ? 'Sudah Dipelajari' : 'Tandai Selesai'}</span>
+                            </button>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid ${mod.icon}"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-lg sm:text-xl font-bold leading-snug">${mod.title}</h3>
+                                <p class="text-xs text-sky-600 dark:text-sky-400 font-medium italic">“${mod.subtitle}”</p>
+                            </div>
+                        </div>
+
+                        <!-- Tools Badges -->
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase mr-1">Tools:</span>
+                            ${mod.tools.map(t => `<span class="px-2.5 py-0.5 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-xs font-semibold">${t}</span>`).join('')}
+                        </div>
+
+                        <!-- Tujuan & Langkah-langkah -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                            <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-2xl">
+                                <h4 class="text-xs font-bold uppercase text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bullseye text-rose-500"></i> Tujuan Praktik
+                                </h4>
+                                <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+                                    ${mod.tujuan.map(pt => `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5 shrink-0"></i><span>${pt}</span></li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-2xl">
+                                <h4 class="text-xs font-bold uppercase text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-list-ol text-sky-500"></i> Langkah Praktik
+                                </h4>
+                                <ol class="space-y-1 text-xs text-slate-600 dark:text-slate-300 list-decimal list-inside">
+                                    ${mod.langkah.map(st => `<li>${st}</li>`).join('')}
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="text-xs bg-amber-50 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/50 text-amber-900 dark:text-amber-200 px-3.5 py-2.5 rounded-xl">
+                            <strong><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> Target Hasil:</strong> ${mod.target}
+                        </div>
+                    </div>
+
+                    <!-- Prompt Box -->
+                    <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-700">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-[11px] font-bold uppercase text-sky-600 dark:text-sky-400">Contoh Prompt / Caption Siap Pakai:</span>
+                            <button onclick="copyPromptText(${idx})" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <p id="mod-prompt-${idx}" class="text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed">"${mod.promptExample}"</p>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function toggleModuleComplete(idx) {
+            appState.completedModules[idx] = !appState.completedModules[idx];
+            renderModules();
+            updateProgressUI();
+            if (appState.completedModules[idx]) {
+                showToast(`Materi Praktik ${idx + 1} ditandai selesai!`, 'success');
+            }
+        }
+
+        function copyPromptText(idx) {
+            const text = modulesData[idx].promptExample;
+            copyRawString(text);
+        }
+
+        function generateCustomPrompt() {
+            const topic = document.getElementById('prompt-topic').value.trim();
+            if (!topic) {
+                showToast('Masukkan topik mata pelajaran terlebih dahulu.', 'warning');
+                return;
+            }
+            const mapel = appState.user?.mapel || 'SMK';
+            const result = `Bertindaklah sebagai ahli kurikulum dan kreator konten edukasi. Saya adalah guru ${mapel}. Buatkan: (1) Rangkuman materi tentang "${topic}" dengan bahasa yang mudah dipahami siswa SMK, (2) 5 soal pilihan ganda HOTS beserta kunci jawabannya, dan (3) Naskah video edukasi berdurasi 2 menit untuk menjelaskan topik "${topic}" secara visual dan menarik.`;
+            
+            document.getElementById('generated-prompt-text').textContent = result;
+            document.getElementById('generated-prompt-box').classList.remove('hidden');
+            showToast('Prompt AI kustom berhasil dibuat!', 'success');
+        }
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            copyRawString(text);
+        }
+
+        function copyRawString(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Teks prompt berhasil disalin ke clipboard!', 'success');
+            } catch (err) {
+                showToast('Gagal menyalin teks.', 'error');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // ==========================================
+        // 7. STEP 3: TUGAS PRAKTIK
+        // ==========================================
+        function copyFolderFormat() {
+            const nama = appState.user?.nama ? appState.user.nama.toUpperCase() : 'NAMA GURU';
+            const mapel = appState.user?.mapel ? appState.user.mapel.toUpperCase() : 'MAPEL';
+            const sekolah = appState.user?.sekolah ? appState.user.sekolah.toUpperCase() : 'SMK MUHAMMADIYAH 01 KELING';
+            const formatted = `${nama} – ${mapel} – ${sekolah}`;
+            copyRawString(formatted);
+        }
+
+        function fillDemoTask() {
+            document.getElementById('tugas-judul').value = 'Paket Proyek Akhir: Materi, 10 Soal AI, Video Edukasi 45 Detik & Poster Promosi';
+            document.getElementById('tugas-link').value = 'https://drive.google.com/drive/folders/contoh-karya-guru-smkmuh01';
+            document.getElementById('tugas-deskripsi').value = 'Menggunakan ChatGPT & Gemini untuk menyusun materi ajar + 10 soal evaluasi dan naskah video. Produksi video edukasi 45 detik memakai Google Flow & CapCut, poster menggunakan Canva, serta dipublikasikan dengan 5 hashtag relevan.';
+            showToast('Contoh isian tugas berhasil diterapkan.', 'info');
+        }
+
+        function handleTaskSubmission(e) {
+            e.preventDefault();
+            const kategori = document.querySelector('input[name="kategori_tugas"]:checked').value;
+            const judul = document.getElementById('tugas-judul').value.trim();
+            const link = document.getElementById('tugas-link').value.trim();
+            const deskripsi = document.getElementById('tugas-deskripsi').value.trim();
+
+            appState.taskSubmitted = true;
+            appState.taskData = { kategori, judul, link, deskripsi };
+
+            // Auto mark modules read if not yet
+            appState.completedModules = [true, true, true, true];
+            renderModules();
+
+            const badge = document.getElementById('tugas-status-badge');
+            badge.className = 'px-4 py-2 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold self-start';
+            badge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Tugas Terkumpul';
+
+            document.getElementById('check-tugas').classList.remove('hidden');
+            updateProgressUI();
+
+            showToast('Tugas praktik berhasil dikirim! Silakan lanjut ke Evaluasi.', 'success');
+            navigateTo('evaluasi');
+        }
+
+        // ==========================================
+        // 8. STEP 4: EVALUASI (QUIZ)
+        // ==========================================
+        function renderQuiz() {
+            const letters = ['A', 'B', 'C', 'D'];
+            const container = document.getElementById('quiz-questions');
+            container.innerHTML = quizData.map((item, qIdx) => `
+                <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+                    <p class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                        <span class="text-sky-600 dark:text-sky-400 mr-1">${qIdx + 1}.</span> ${item.q}
+                    </p>
+                    <div class="grid grid-cols-1 gap-2.5 pt-1">
+                        ${item.options.map((opt, oIdx) => `
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-sky-400 cursor-pointer transition">
+                                <input type="radio" name="q_${qIdx}" value="${oIdx}" required class="w-4 h-4 text-sky-600 focus:ring-sky-500">
+                                <span class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center justify-center shrink-0">${letters[oIdx]}</span>
+                                <span class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function submitEvaluation(e) {
+            e.preventDefault();
+            let correctCount = 0;
+
+            quizData.forEach((item, qIdx) => {
+                const selected = document.querySelector(`input[name="q_${qIdx}"]:checked`);
+                if (selected && parseInt(selected.value, 10) === item.answer) {
+                    correctCount++;
+                }
+            });
+
+            const isAllCorrect = correctCount === quizData.length;
+            const score = Math.round((correctCount / quizData.length) * 100);
+            appState.evalScore = score;
+            appState.evalPassed = isAllCorrect;
+
+            const scoreDisplay = document.getElementById('eval-score-display');
+            const scoreVal = document.getElementById('eval-score-value');
+            scoreDisplay.classList.remove('hidden');
+            scoreVal.textContent = `${score} / 100 (${correctCount}/${quizData.length})`;
+
+            updateProgressUI();
+
+            if (isAllCorrect) {
+                document.getElementById('check-evaluasi').classList.remove('hidden');
+                showToast(`Sempurna! Benar semua (${correctCount}/${quizData.length} &bull; Skor ${score}). Sertifikat Anda langsung terbuka!`, 'success');
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 110, spread: 75, origin: { y: 0.6 } });
+                }
+                navigateTo('sertifikat');
+            } else {
+                showToast(`Jawaban benar ${correctCount} dari ${quizData.length} soal (Skor ${score}). Sertifikat terbuka otomatis jika benar semua (10/10).`, 'error');
+            }
+        }
+
+        // ==========================================
+        // 9. STEP 5: SERTIFIKAT & PROGRESS SYNC
+        // ==========================================
+        function updateProgressUI() {
+            const doneCount = appState.completedModules.filter(Boolean).length;
+            const percent = Math.round((doneCount / modulesData.length) * 100);
+            document.getElementById('materi-count').textContent = doneCount;
+            document.getElementById('materi-percent').textContent = `${percent}%`;
+
+            if (doneCount === modulesData.length) {
+                document.getElementById('check-materi').classList.remove('hidden');
+            } else {
+                document.getElementById('check-materi').classList.add('hidden');
+            }
+        }
+
+        function updateCertificateView() {
+            const req1 = document.getElementById('req-1');
+            const req2 = document.getElementById('req-2');
+
+            req1.innerHTML = appState.user 
+                ? '<span class="text-emerald-500"><i class="fa-solid fa-circle-check"></i> Selesai</span>' 
+                : '<span class="text-rose-500"><i class="fa-solid fa-circle-xmark"></i> Belum</span>';
+
+            req2.innerHTML = appState.evalPassed 
+                ? `<span class="text-emerald-500"><i class="fa-solid fa-circle-check"></i> Benar Semua (${appState.evalScore}/100)</span>` 
+                : `<span class="text-rose-500"><i class="fa-solid fa-circle-xmark"></i> Belum (${appState.evalScore ?? 0}/100)</span>`;
+
+            if (appState.user && appState.evalPassed) {
+                document.getElementById('cert-locked').classList.add('hidden');
+                document.getElementById('cert-unlocked').classList.remove('hidden');
+
+                // Populate Certificate Data
+                document.getElementById('cert-participant-name').textContent = appState.user.nama;
+                document.getElementById('cert-participant-school').textContent = `${appState.user.sekolah}${appState.user.mapel ? ' — Guru ' + appState.user.mapel : ''}`;
+                document.getElementById('cert-banner-name').textContent = appState.user.nama;
+                document.getElementById('cert-predicate').textContent = 'SANGAT MEMUASKAN (SEMPURNA)';
+
+                const cleanCode = appState.user.nama.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 4) || 'GURU';
+                document.getElementById('cert-number').textContent = `Nomor: 042/${cleanCode}/CERT-AI/SMKMUH01-PTWEB/XII/2026`;
+            } else {
+                document.getElementById('cert-locked').classList.remove('hidden');
+                document.getElementById('cert-unlocked').classList.add('hidden');
+            }
+        }
+
+        function downloadCertificateImage() {
+            if (!appState.user || !appState.evalPassed) {
+                showToast('Selesaikan pendaftaran dan jawab evaluasi benar semua terlebih dahulu.', 'warning');
+                return;
+            }
+
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1600;
+                canvas.height = 1130;
+                const ctx = canvas.getContext('2d');
+
+                // Latar belakang putih bersih
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Aksen gradien sudut
+                const gradTop = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                gradTop.addColorStop(0, '#0369a1');
+                gradTop.addColorStop(0.5, '#0284c7');
+                gradTop.addColorStop(1, '#facc15');
+                ctx.fillStyle = gradTop;
+                ctx.fillRect(0, 0, canvas.width, 22);
+                ctx.fillRect(0, canvas.height - 22, canvas.width, 22);
+
+                // Bingkai luar & dalam
+                ctx.strokeStyle = '#0369a1';
+                ctx.lineWidth = 8;
+                ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+                ctx.strokeStyle = '#eab308';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(66, 66, canvas.width - 132, canvas.height - 132);
+
+                // Header instansi
+                ctx.textAlign = 'left';
+                ctx.fillStyle = '#0c4a6e';
+                ctx.font = 'bold 26px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('SMK MUHAMMADIYAH 01 KELING JEPARA', 115, 132);
+
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#0284c7';
+                ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('PT WEB DIGITAL MARKETING', canvas.width - 115, 132);
+
+                // Badge & Judul Sertifikat
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#facc15';
+                ctx.fillRect(canvas.width / 2 - 170, 175, 340, 42);
+                ctx.fillStyle = '#0f172a';
+                ctx.font = 'bold 16px Inter, sans-serif';
+                ctx.fillText('SERTIFIKAT KELULUSAN PELATIHAN', canvas.width / 2, 202);
+
+                ctx.fillStyle = '#0c4a6e';
+                ctx.font = 'bold 82px "Playfair Display", Georgia, serif';
+                ctx.fillText('SERTIFIKAT', canvas.width / 2, 305);
+
+                const certNumText = document.getElementById('cert-number').textContent;
+                ctx.fillStyle = '#64748b';
+                ctx.font = '600 20px Inter, sans-serif';
+                ctx.fillText(certNumText, canvas.width / 2, 348);
+
+                ctx.fillStyle = '#475569';
+                ctx.font = '24px Inter, sans-serif';
+                ctx.fillText('Diberikan dengan bangga kepada:', canvas.width / 2, 412);
+
+                // Nama Peserta
+                ctx.fillStyle = '#0f172a';
+                ctx.font = 'bold 58px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText(appState.user.nama, canvas.width / 2, 492);
+
+                // Garis bawah nama peserta
+                const nameWidth = Math.min(920, Math.max(460, ctx.measureText(appState.user.nama).width + 80));
+                ctx.strokeStyle = '#0284c7';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2 - nameWidth / 2, 516);
+                ctx.lineTo(canvas.width / 2 + nameWidth / 2, 516);
+                ctx.stroke();
+
+                const schoolInfo = `${appState.user.sekolah}${appState.user.mapel ? ' — Guru ' + appState.user.mapel : ''}`;
+                ctx.fillStyle = '#334155';
+                ctx.font = '600 24px Inter, sans-serif';
+                ctx.fillText(schoolInfo, canvas.width / 2, 558);
+
+                // Deskripsi Kelulusan
+                ctx.fillStyle = '#334155';
+                ctx.font = '23px Inter, sans-serif';
+                ctx.fillText('Telah berhasil menyelesaikan Evaluasi (Skor 100 / Benar Semua) pada kegiatan', canvas.width / 2, 628);
+
+                ctx.fillStyle = '#0c4a6e';
+                ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('Pelatihan Praktek AI dan Konten Video bagi Guru', canvas.width / 2, 668);
+
+                ctx.fillStyle = '#475569';
+                ctx.font = '22px Inter, sans-serif';
+                ctx.fillText('Diselenggarakan pada 3 Desember 2026 di SMK Muhammadiyah 01 Keling Jepara (32 JP)', canvas.width / 2, 708);
+
+                // Tanda Tangan
+                ctx.fillStyle = '#64748b';
+                ctx.font = '20px Inter, sans-serif';
+                ctx.fillText('Mengetahui,', 450, 800);
+                ctx.fillText('Jepara, 3 Desember 2026', 1150, 800);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.font = 'bold 22px Inter, sans-serif';
+                ctx.fillText('Kepala SMK Muhammadiyah 01 Keling', 450, 832);
+                ctx.fillText('Narasumber / Konsultan AI', 1150, 832);
+
+                ctx.fillStyle = '#0284c7';
+                ctx.font = 'italic bold 32px "Playfair Display", Georgia, serif';
+                ctx.fillText('Latif Safruddin', 1150, 905);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.font = 'bold 23px Inter, sans-serif';
+                ctx.fillText('Pimpinan Sekolah', 450, 960);
+                ctx.fillText('Latif Safruddin', 1150, 960);
+
+                ctx.fillStyle = '#64748b';
+                ctx.font = '19px Inter, sans-serif';
+                ctx.fillText('SMK Muhammadiyah 01 Keling Jepara', 450, 990);
+                ctx.fillText('Founder PT Web Digital Marketing', 1150, 990);
+
+                const safeFileName = appState.user.nama.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'peserta';
+                const link = document.createElement('a');
+                link.download = `Sertifikat-Pelatihan-AI-${safeFileName}.png`;
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                showToast('Sertifikat PNG berhasil diunduh!', 'success');
+            } catch (err) {
+                showToast('Gagal mengunduh gambar sertifikat, silakan gunakan tombol Cetak / PDF.', 'error');
+            }
+        }
+
+        function goToNextIncompleteStep() {
+            if (!appState.user) return navigateTo('pendaftaran');
+            if (!appState.evalPassed) return navigateTo('evaluasi');
+            navigateTo('sertifikat');
+        }
+    </script>
+</body>
+</html>
